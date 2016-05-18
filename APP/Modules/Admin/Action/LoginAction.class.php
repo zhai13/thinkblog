@@ -11,8 +11,8 @@ Class LoginAction extends Action {
     Public function index() {
         $this->display();
     }
-    Public function varify() {
-        import('ORG.Util.Image');
-        Image::buildImageVerify();
+    Public function verify() {
+        import('Class.Image', APP_PATH);    //引入自定义类
+        Image::verify();    //调用verify函数
     }
 }
