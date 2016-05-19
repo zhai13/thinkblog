@@ -25,31 +25,23 @@
 	</div>
 	<div id="left">
 		<dl>
-			<dt>功能标题</dt>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
+			<dt>博文管理</dt>
+			<dd><a href="#">博文列表</a></dd>
+			<dd><a href="#">添加博文</a></dd>
 		</dl>
 		<dl>
-			<dt>功能标题</dt>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
+			<dt>属性管理</dt>
+			<dd><a href="#">属性列表</a></dd>
+			<dd><a href="#">添加属性</a></dd>
 		</dl>
 		<dl>
-			<dt>功能标题</dt>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
-			<dd><a href="#">功能标题</a></dd>
+			<dt>分类管理</dt>
+			<dd><a href="#">分类列表</a></dd>
+			<dd><a href="#">添加分类</a></dd>
+		</dl>
+		<dl>
+			<dt>系统设置</dt>
+			<dd><a href="#">验证码设置</a></dd>
 		</dl>
 	</div>
 	<div id="right">
