@@ -11,4 +11,11 @@ Class IndexAction extends CommonAction {
     Public function index() {
         $this->display();
     }
+
+    //退出登录
+    Public function logout() {
+        session_unset();    //销毁会话
+        session_destroy();  //彻底终结session
+        $this->redirect(GROUP_NAME . '/Login/index');
+    }
 }
