@@ -30,13 +30,13 @@
 			<foreach name='cate' item='v'>
 				<tr>
 					<td>{$v.id}</td>	<!--用点语法输出数组中的键值-->
-					<td>{$v.name}</td>
-					<td>TODO</td>
+					<td>{$v.html}{$v.name}</td>
+					<td>{$v.level}</td>
 					<td>
 						<input type="text" name="{$v.id}" value="{$v.sort}"/>
 					</td>
 					<td>
-						[<a href="#">添加子分类</a>]
+						[<a href="{:U(GROUP_NAME . '/Category/addCate', array('pid' => $v['id']))}">添加子分类</a>]
 						[<a href="#">修改</a>]
 						[<a href="#">删除</a>]
 					</td>

@@ -8,13 +8,16 @@
 Class CategoryAction extends CommonAction {
     /*分类列表视图*/
     Public function index() {
+        import('Class.Category', APP_PATH);     //引入无限极分类的类
         $cate = M('cate')->order('sort ASC')->select(); //查找出所有分类
-        $this->cate = $cate;    //通过对象的形式把数据分配到模板上,要在模板中输出变量，必须在在Action类中把变量传递给模板
+        $this->cate = Category::unlimitedForLevel($cate, '&nbsp;&nbsp;--');     //调用无限极分类并赋值到模板
         $this->display();   //显示到模板
     }
 
     /*添加分类视图*/
     Public function addCate() {
+        //$pid = isset($_GET['pid']) ? $_GET['pid'] : 0; 判断是否顶级分类传统写法
+        $this->pid = I('pid', 0, 'intval');     //I方法获取传递过来的参数('参数名', 默认值, 转换方式)
         $this->display();
     }
 
