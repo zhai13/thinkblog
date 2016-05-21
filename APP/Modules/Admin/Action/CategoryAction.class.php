@@ -10,7 +10,11 @@ Class CategoryAction extends CommonAction {
     Public function index() {
         import('Class.Category', APP_PATH);     //引入无限极分类的类
         $cate = M('cate')->order('sort ASC')->select(); //查找出所有分类
+        //$cate = Category::unlimitedForLayer($cate, 'cete');
+        //$cate = Category::getParents($cate, 12);
+        //$cate = Category::getChildsIds($cate, 4);
         $this->cate = Category::unlimitedForLevel($cate, '&nbsp;&nbsp;--');     //调用无限极分类并赋值到模板
+        //p($cate);
         $this->display();   //显示到模板
     }
 
