@@ -35,6 +35,10 @@ Class BlogAction extends CommonAction {
         $upload->dateFormat = 'Ym';
         if ($upload->upload('./Uploads/')) {
             $info = $upload->getUploadFileInfo();
+            //import('ORG.Util.Image');
+            //Image::water('./Uploads/' . $info[0]['savename'], './Data/logo.png');
+            import('Class.Image', APP_PATH);
+            Image::water('./Uploads/' . $info[0]['savename']);
             echo json_encode(array(
                 'url' => $info[0]['savename'],
                 'title' => htmlspecialchars($_POST['pictitle'], ENT_QUOTES),

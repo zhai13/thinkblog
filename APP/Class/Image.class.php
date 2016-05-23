@@ -19,29 +19,6 @@
  * 嵌入框架时，找到每个方法的初始处把常量替换成配置文件项
  * 如 ThinkPHP 可采用 C() 函数代替常量定义
  */
-/**********水印配置项**********/
-//水印图路径
-define('WATER_IMAGE', './water.png');
-//水印位置
-define('WATER_POS', 9);
-//水印透明度
-define('WATER_ALPHA', 60);
-//JPEG图片压缩比
-define('WATER_COMPRESSION', 80);
-//水印文字
-define('WATER_TEXT', 'HouDunWang.com');
-//水印文字旋转角色
-define('WATER_ANGLE', 0);
-//水印文字大小
-define('WATER_FONTSIZE', 30);
-//水印文字颜色
-define('WATER_FONTCOLOR', '#670768');
-//水印文字字体文件(写入中文字时需使用支持中文的字体文件)
-define('WATER_FONTFILE', './font.ttf');
-//水印文字字符编码
-define('WATER_CHARSET', 'UTF-8');
-
-
 /**********缩略图配置项**********/
 //缩略图宽度
 define('THUMB_WIDTH', 200);
@@ -136,10 +113,10 @@ Class Image {
 		if (!self::checkCondition($img)) return false;
 		
 		//初始化参数(放进框架时把常量换成 读取配置文件项 )
-		$water = empty($water) ? WATER_IMAGE : $water;
-		$pos = WATER_POS;
-		$alpha = WATER_ALPHA;
-		$compression = WATER_COMPRESSION;
+		$water = empty($water) ? C('WATER_IMAGE') : $water;
+		$pos = C('WATER_POS');
+		$alpha = C('WATER_ALPHA');
+		$compression = C('WATER_COMPRESSION');
 
 		if (!file_exists($water)) return false;
 
