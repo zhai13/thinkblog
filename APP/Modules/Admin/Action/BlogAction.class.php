@@ -24,7 +24,21 @@ Class BlogAction extends CommonAction {
 
     //添加博文表单处理
     Public function addBlog() {
-        p($_POST);
+        $data = array(
+            'title' => $_POST['title'],
+            'content' => $_POST['content'],
+            'time' => time(),
+            'click' => (int) $_POST['click'],
+            'cid' => (int) $_POST['cid'],
+        );
+        if (isset($_POST['aid'])) {
+            $data['attr'] = array();
+            foreach ($_POST['aid'] as $v) {
+                $data['attr'][] = $v;
+            }
+        }
+        D('BlogRelation')->relation(true)->add($data);
+        $this->display();
     }
     //编辑器图片上传处理
     Public function upload() {
