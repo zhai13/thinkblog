@@ -8,7 +8,7 @@
 Class BlogAction extends CommonAction {
     //博文列表
     Public function index() {
-        $this->display();
+        echo 1;
     }
 
     //添加博文
@@ -31,6 +31,7 @@ Class BlogAction extends CommonAction {
             'click' => (int) $_POST['click'],
             'cid' => (int) $_POST['cid'],
         );
+        /*
         if (isset($_POST['aid'])) {
             $data['attr'] = array();
             foreach ($_POST['aid'] as $v) {
@@ -38,7 +39,21 @@ Class BlogAction extends CommonAction {
             }
         }
         D('BlogRelation')->relation(true)->add($data);
-        $this->display();
+        */
+        //组合SQL
+        if ($bid = M('blog')->add($data)) {
+            if (isset($_POST['aid'])) {
+                $sql = 'INSERT INTO `' . C('DB_PREFIX') . 'blog_attr` (bid, aid) VALUES';
+                foreach ($_POST['aid'] as $v) {
+                    $sql .= '(' . $bid . ',' . $v . '),';
+                }
+                $sql = rtrim($sql, ',');
+                M('blog_attr')->query($sql);
+            }
+            $this->success('添加成功', U(GROUP_NAME . '/Blog/index'));
+        } else {
+            $this->error('添加失败');
+        }
     }
     //编辑器图片上传处理
     Public function upload() {
