@@ -8,7 +8,14 @@
 Class BlogAction extends CommonAction {
     //博文列表
     Public function index() {
-        echo 1;
+        $field = array('del');  //不想读取的字段
+        $where = array('del' => 0);
+        $this->blog = D('BlogRelation')->field($field, true)->where($where)->relation(true)->select();    //关联所有的表
+        $this->display();
+    }
+    //回收站
+    Public function trach() {
+
     }
 
     //添加博文
