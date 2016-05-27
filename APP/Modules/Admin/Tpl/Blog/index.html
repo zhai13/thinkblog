@@ -35,8 +35,13 @@
 					{$v.time|date='y-m-d H:i', ###}
 				</td>
 				<td width="20%">
-					[<a href="">修改</a>]
-					[<a href="">删除</a>]
+					<if condition = 'ACTION_NAME eq "index"'>
+						[<a href="">修改</a>]
+						[<a href="{:U(GROUP_NAME . '/Blog/toTrach', array('id' => $v['id'], 'type' => 1))}">删除</a>]
+					<else/>
+						[<a href="{:U(GROUP_NAME . '/Blog/toTrach', array('id' => $v['id'], 'type' => 0))}">还原</a>]
+						[<a href="{:U(GROUP_NAME . '/Blog/delete', array('id' => $v['id']))}">彻底删除</a>]
+					</if>
 				</td>
 			</tr>
 

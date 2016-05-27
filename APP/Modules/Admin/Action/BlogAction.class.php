@@ -8,14 +8,39 @@
 Class BlogAction extends CommonAction {
     //博文列表
     Public function index() {
-        $field = array('del');  //不想读取的字段
-        $where = array('del' => 0);
-        $this->blog = D('BlogRelation')->field($field, true)->where($where)->relation(true)->select();    //关联所有的表
+        $this->blog = D('BlogRelation')->getBlogs();
         $this->display();
     }
+    //删除到回收站/还原
+    Public function toTrach () {
+        $type = (int) $_GET['type'];
+        $msg = $type ? '删除' : '还原';
+        $update = array(
+            'id' => (int) $_GET['id'],
+            'del' => $type,
+        );
+        if (M('blog')->save($update)) {
+            $this->success($msg . '成功', U(GROUP_NAME . '/Blog/index'));
+        } else {
+            $this->error($msg . '失败');
+        }
+    }
+
     //回收站
     Public function trach() {
+        $this->blog = D('BlogRelation')->getBlogs(1);
+        $this->display('index');
+    }
 
+    //彻底删除
+    Public function delete() {
+        $id = (int) $_GET['id'];
+        if (M('blog')->delete($id)) {
+            M('blog_attr')->where(array('bid' => $id))->delete();
+            $this->success('删除成功', U(GROUP_NAME . '/Blog/trach'));
+        } else {
+            $this->error('删除失败');
+        }
     }
 
     //添加博文

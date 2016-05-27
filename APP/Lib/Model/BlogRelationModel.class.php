@@ -23,4 +23,10 @@ Class BlogRelationModel extends RelationModel {
             'as_fields' => 'name:cate',
         ),
     );
+
+    Public function getBlogs ($type = 0) {
+        $field = array('del');  //不想读取的字段
+        $where = array('del' => $type);
+        return $this->field($field, true)->where($where)->relation(true)->select();    //关联所有的表
+    }
 }
